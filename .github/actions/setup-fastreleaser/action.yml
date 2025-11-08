@@ -25,3 +25,9 @@ runs:
     - name: Check fastreleaser version
       shell: bash
       run: fastreleaser -v || fastreleaser
+
+    - name: Set Fastreleaser user.email and user.name
+      shell: bash
+      run: >-
+        git config --global user.email "fastreleaser@locom.ninja" ;
+        git config --global user.name "FastReleaser" ;
