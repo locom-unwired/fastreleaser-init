@@ -15,11 +15,12 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.github-token }}
       run: |
-        curl -H "Authorization: Bearer $GH_TOKEN" \
-             -L -o fastreleaser.tar.gz \
-             https://github.com/localcompose/fastreleaser/releases/download/v1.0.0/fastreleaser_Linux_x86_64.tar.gz
-        tar -xzf fastreleaser.tar.gz
-        sudo mv fastreleaser /usr/local/bin/
+        gh release download v1.0.0 \
+          --pattern fastreleaser \
+          --repo localcompose/fastreleaser \
+          --dir .
+        chmod +x ./fastreleaser
+        sudo mv  ./fastreleaser /usr/local/bin/
 
     - name: Check fastreleaser version
       shell: bash
